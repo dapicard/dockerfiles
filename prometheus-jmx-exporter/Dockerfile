@@ -1,4 +1,12 @@
-FROM solsson/jdk-opensource:11.0.2@sha256:9088fd8eff0920f6012e422cdcb67a590b2a6edbeae1ff0ca8e213e0d4260cf8
+FROM maven:3.6.0-jdk-8-slim@sha256:c3e480a0180ff76cfd2c4d51672ca9c050009b98eba8f9d6b9e2752c8ef2956b as maven
+
+FROM oracle/graalvm-ce:1.0.0-rc14@sha256:ea22ec502d371af47524ceedbe6573caaa59d5143c2c122a46c8eedf40c961f0 \
+  as maven-build
+
+COPY --from=maven /usr/share/maven /usr/share/maven
+RUN ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
+ENV MAVEN_HOME=/usr/share/maven
+ENV MAVEN_CONFIG=/root/.m2
 
 ENV EXPORTER_VERSION=96d8a72e2bc71575b2fed576a9e8b194ffa9777d
 ENV EXPORTER_REPO=github.com/prometheus/jmx_exporter
@@ -6,16 +14,6 @@ ENV EXPORTER_REPO=github.com/prometheus/jmx_exporter
 WORKDIR /usr/local/
 
 RUN set -ex; \
-  DEBIAN_FRONTEND=noninteractive; \
-  runDeps=''; \
-  buildDeps='curl ca-certificates'; \
-  apt-get update && apt-get install -y $runDeps $buildDeps --no-install-recommends; \
-  \
-  MAVEN_VERSION=3.5.2 PATH=$PATH:$(pwd)/maven/bin; \
-  mkdir ./maven; \
-  curl -SLs https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar -xzf - --strip-components=1 -C ./maven; \
-  mvn --version; \
-  \
   mkdir ./jmx_exporter; \
   curl -SLs https://$EXPORTER_REPO/archive/$EXPORTER_VERSION.tar.gz | tar -xzf - --strip-components=1 -C ./jmx_exporter; \
   cd ./jmx_exporter; \
@@ -26,11 +24,11 @@ RUN set -ex; \
   \
   rm -Rf ./jmx_exporter ./maven /root/.m2; \
   \
-  apt-get purge -y --auto-remove $buildDeps; \
-  rm -rf /var/lib/apt/lists/*; \
-  rm -rf /var/log/dpkg.log /var/log/alternatives.log /var/log/apt
+  native-image --no-server -jar jmx_prometheus_httpserver.jar; \
+  rm jmx_prometheus_httpserver.jar; \
+  mv jmx_prometheus_httpserver ./bin
 
 COPY collect-all-slow.yml example_configs/
 
-ENTRYPOINT ["java", "-jar", "jmx_prometheus_httpserver.jar"]
+ENTRYPOINT ["jmx_prometheus_httpserver"]
 CMD ["5556", "example_configs/collect-all-slow.yml"]
