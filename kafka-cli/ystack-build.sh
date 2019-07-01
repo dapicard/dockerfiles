@@ -45,4 +45,5 @@ KUBECONFIG=$KUBECONFIG buildctl build \
     --local context="$BUILD_CONTEXT" \
     --local dockerfile="$BUILD_CONTEXT" \
     --opt filename=$FILENAME \
+    --opt target=graal-dist \
     --output "$OUTPUT"

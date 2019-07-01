@@ -27,6 +27,26 @@ COPY --from=maven-jars /slf4j-nop-1.7.25.jar /opt/kafka/libs/slf4j-nop-1.7.25.ja
 ENTRYPOINT [ "/opt/java/openjdk/bin/java", "-cp", "./libs/kafka_2.12-2.2.1.jar:./libs/kafka-clients-2.2.1.jar:./libs/scala-library-2.12.8.jar:./libs/scala-logging_2.12-3.9.0.jar:./libs/slf4j-api-1.7.25.jar:./libs/slf4j-nop-1.7.25.jar:./libs/jopt-simple-5.0.4.jar:./libs/zookeeper-3.4.13.jar:./libs/metrics-core-2.2.0.jar:./libs/jackson-core-2.9.8.jar:./libs/jackson-databind-2.9.8.jar:./libs/jackson-annotations-2.9.8.jar:./libs/zkclient-0.11.jar" ]
 CMD ["kafka.admin.ConfigCommand"]
 
+FROM oracle/graalvm-ce:19.0.2@sha256:684ba0e822eb2f569ffef96abb315f5b66550c4e7d5d38ad6570b72f0ce06c35 as graal-dist
+RUN gu install native-image
+
+RUN yum -y install snappy libzstd lz4 && yum clean all
+
+RUN ls /opt/graalvm-ce-19.0.2/jre/lib/amd64/libnative-image-agent.so
+
+COPY --from=dist /opt/kafka /opt/kafka
+WORKDIR /opt/kafka
+
+ENV KAFKA_OPTS="-agentlib:native-image-agent=config-merge-dir=/graalvm-native-config-dir"
+RUN mkdir /graalvm-native-config-dir \
+  && echo '[]' > /graalvm-native-config-dir/jni-config.json \
+  && echo '[]' > /graalvm-native-config-dir/reflect-config.json \
+  && echo '[]' > /graalvm-native-config-dir/proxy-config.json \
+  && echo '[]' > /graalvm-native-config-dir/resource-config.json
+
+ENTRYPOINT [ "/usr/bin/java", "-agentlib:native-image-agent=config-merge-dir=/graalvm-native-config-dir", "-cp", "./libs/kafka_2.12-2.2.1.jar:./libs/kafka-clients-2.2.1.jar:./libs/scala-library-2.12.8.jar:./libs/scala-logging_2.12-3.9.0.jar:./libs/slf4j-api-1.7.25.jar:./libs/slf4j-nop-1.7.25.jar:./libs/jopt-simple-5.0.4.jar:./libs/zookeeper-3.4.13.jar:./libs/metrics-core-2.2.0.jar:./libs/jackson-core-2.9.8.jar:./libs/jackson-databind-2.9.8.jar:./libs/jackson-annotations-2.9.8.jar:./libs/zkclient-0.11.jar" ]
+CMD ["kafka.admin.ConfigCommand"]
+
 FROM oracle/graalvm-ce:19.0.2@sha256:684ba0e822eb2f569ffef96abb315f5b66550c4e7d5d38ad6570b72f0ce06c35 as native-build
 RUN gu install native-image
 
