@@ -11,6 +11,9 @@ RUN curl -o /quarkus-kafka-client-0.16.1.jar http://central.maven.org/maven2/io/
 # Built with a patch that eliminates some reflection: https://github.com/jopt-simple/jopt-simple/compare/jopt-simple-5.0.4...solsson:reflection-avoidance
 FROM solsson/jar-jopt-simple:5.0.4-reflectless@sha256:39a9249826192b3e9a290028da151e81fdccb3e4308fda3b7403fb6a6d9b9f78 as jopt-simple-jar
 
+# Built with reoval of the de-support for kafka compression: https://github.com/solsson/quarkus/commit/11aa06edfe42fd29dd82729cacfe3ff4b577c36f
+FROM solsson/quarkus@sha256:b3c67b8362393356b6eca2fc6d90440dcf946ec3cf135dc3d3ee35b678246274 as quarkus-patch-jars
+
 FROM solsson/kafka@sha256:9f1f0e769cd10e0503bc5649f9fcb0fc2c28aaf8e3b9b30ef2e6da67655bb3f6 as dist
 
 # The rest can be generated from:
@@ -29,7 +32,7 @@ RUN gu install native-image
 
 RUN yum -y install snappy libzstd lz4 && yum clean all
 
-ARG classpath=./libs/kafka_2.12-2.2.1.jar:./libs/kafka-clients-2.2.1.jar:./libs/scala-library-2.12.8.jar:./libs/scala-logging_2.12-3.9.0.jar:./libs/slf4j-api-1.7.25.jar:./libs/slf4j-nop-1.7.25.jar:./libs/jopt-simple-5.0.4.jar:./libs/zookeeper-3.4.13.jar:./libs/metrics-core-2.2.0.jar:./libs/jackson-core-2.9.8.jar:./libs/jackson-databind-2.9.8.jar:./libs/jackson-annotations-2.9.8.jar:./libs/zkclient-0.11.jar:./libs/log4j-1.2.17.jar:./libs/lz4-java-1.5.0.jar:./libs/quarkus-kafka-client-0.16.1.jar
+ARG classpath=./libs/kafka_2.12-2.2.1.jar:./libs/kafka-clients-2.2.1.jar:./libs/scala-library-2.12.8.jar:./libs/scala-logging_2.12-3.9.0.jar:./libs/slf4j-api-1.7.25.jar:./libs/slf4j-nop-1.7.25.jar:./libs/jopt-simple-5.0.4.jar:./libs/zookeeper-3.4.13.jar:./libs/metrics-core-2.2.0.jar:./libs/jackson-core-2.9.8.jar:./libs/jackson-databind-2.9.8.jar:./libs/jackson-annotations-2.9.8.jar:./libs/zkclient-0.11.jar:./libs/log4j-1.2.17.jar:./libs/lz4-java-1.5.0.jar:./libs/quarkus-kafka-client-0.18.0-patched.jar
 
 WORKDIR /opt/kafka
 
@@ -38,7 +41,7 @@ COPY --from=dist /opt/kafka .
 # Failed to verify that a reflection config file makes any difference though
 COPY reflection.json .
 
-COPY --from=maven-jars /quarkus-kafka-client-0.16.1.jar ./libs/quarkus-kafka-client-0.16.1.jar
+COPY --from=quarkus-patch-jars /repository/io/quarkus/quarkus-kafka-client/0.18.0/quarkus-kafka-client-0.18.0.jar ./libs/quarkus-kafka-client-0.18.0-patched.jar
 COPY --from=jopt-simple-jar /jopt-simple-5.0.4.jar ./libs/jopt-simple-5.0.4.jar
 
 RUN native-image \
