@@ -3,6 +3,8 @@
     {"pattern":"joptsimple/HelpFormatterMessages.properties"}, 
     {"pattern":"kafka/kafka-version.properties"}, 
     {"pattern":"org/slf4j/impl/StaticLoggerBinder.class"}, 
+    {"pattern":"org/xerial/snappy/VERSION"}, 
+    {"pattern":"org/xerial/snappy/native/Linux/x86_64/libsnappyjava.so"}, 
     {"pattern":"sun/text/resources/LineBreakIteratorData"}
   ]
 }

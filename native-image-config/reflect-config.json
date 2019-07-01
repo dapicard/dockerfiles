@@ -56,5 +56,11 @@
 },
 {
   "name":"org.apache.log4j.spi.OptionHandler"
+},
+{
+  "name":"org.xerial.snappy.SnappyInputStream"
+},
+{
+  "name":"org.xerial.snappy.SnappyOutputStream"
 }
 ]
