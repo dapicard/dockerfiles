@@ -1,5 +1,11 @@
 [
 {
+  "name":"com.github.luben.zstd.ZstdInputStream"
+},
+{
+  "name":"com.github.luben.zstd.ZstdOutputStream"
+},
+{
   "name":"java.lang.Integer",
   "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
 },
@@ -17,6 +23,10 @@
 },
 {
   "name":"kafka.tools.ConsoleProducer$LineMessageReader",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"kafka.tools.DefaultMessageFormatter",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
@@ -57,8 +67,15 @@
   "fields":[{"name":"INSTANCE"}]
 },
 {
+  "name":"org.apache.kafka.clients.consumer.RangeAssignor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
   "name":"org.apache.kafka.clients.producer.internals.DefaultPartitioner",
   "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"org.apache.kafka.common.serialization.ByteArrayDeserializer"
 },
 {
   "name":"org.apache.kafka.common.serialization.ByteArraySerializer",

@@ -1,5 +1,19 @@
 [
 {
+  "name":"com.github.luben.zstd.ZstdInputStream",
+  "fields":[
+    {"name":"dstPos"}, 
+    {"name":"srcPos"}
+  ]
+},
+{
+  "name":"com.github.luben.zstd.ZstdOutputStream",
+  "fields":[
+    {"name":"dstPos"}, 
+    {"name":"srcPos"}
+  ]
+},
+{
   "name":"java.lang.OutOfMemoryError"
 }
 ]
