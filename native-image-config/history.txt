@@ -1,0 +1,53 @@
+    1  ls
+    2  env
+    3  ./bin/kafka-topics.sh --bootstrap-server $BOOTSTRAP --create --topic $TESTTOPIC --replication-factor 1 --partitions  1
+    4  echo '{}' > /graalvm-native-config-dir/jni-config.json   && echo '{}' > /graalvm-native-config-dir/reflect-config.json   && echo '{}' > /graalvm-native-config-dir/proxy-config.json   && echo '{}' > /graalvm-native-config-dir/resource-config.json
+    5  ./bin/kafka-topics.sh --bootstrap-server $BOOTSTRAP --create --topic $TESTTOPIC --replication-factor 1 --partitions  1
+    6  echo '[]' > /graalvm-native-config-dir/jni-config.json   && echo '[]' > /graalvm-native-config-dir/reflect-config.json   && echo '{}' > /graalvm-native-config-dir/proxy-config.json   && echo '{}' > /graalvm-native-config-dir/resource-config.json
+    7  ./bin/kafka-topics.sh --bootstrap-server $BOOTSTRAP --create --topic $TESTTOPIC --replication-factor 1 --partitions  1
+    8  echo '[]' > /graalvm-native-config-dir/jni-config.json   && echo '[]' > /graalvm-native-config-dir/reflect-config.json   && echo '{}' > /graalvm-native-config-dir/proxy-config.json   && echo '[]' > /graalvm-native-config-dir/resource-config.json
+    9  ./bin/kafka-topics.sh --bootstrap-server $BOOTSTRAP --create --topic $TESTTOPIC --replication-factor 1 --partitions  1
+   10  echo '[]' > /graalvm-native-config-dir/jni-config.json   && echo '[]' > /graalvm-native-config-dir/reflect-config.json   && echo '[]' > /graalvm-native-config-dir/proxy-config.json   && echo '{}' > /graalvm-native-config-dir/resource-config.json
+   11  ./bin/kafka-topics.sh --bootstrap-server $BOOTSTRAP --create --topic $TESTTOPIC --replication-factor 1 --partitions  1
+   12  rm libs/slf4j-nop-1.7.25.jar 
+   13  ./bin/kafka-topics.sh --bootstrap-server $BOOTSTRAP --create --topic $TESTTOPIC --replication-factor 1 --partitions  1
+   14  ./bin/kafka-topics.sh --bootstrap-server $BOOTSTRAP --create --topic test01 --replication-factor 1 --partitions  1
+   15  cat /graalvm-native-config-dir/jni-config.json 
+   16  cat /graalvm-native-config-dir/reflect-config.json 
+   17  mkdir /graalvm-native-config-dir   && echo '[]' > /graalvm-native-config-dir/jni-config.json   && echo '[]' > /graalvm-native-config-dir/reflect-config.json   && echo '[]' > /graalvm-native-config-dir/proxy-config.json   && echo '{}' > /graalvm-native-config-dir/resource-config.json
+   18  ./bin/kafka-topics.sh --bootstrap-server $BOOTSTRAP --list
+   19  ./bin/kafka-topics.sh --bootstrap-server $BOOTSTRAP --delete --topic test01
+   20  ./bin/kafka-topics.sh --zookeeper zookeeper.kafka:2181 --alter --topic t --config max.message.bytes=4096;
+   21  TESTTOPIC=test01
+   22  kafka-configs             --zookeeper $ZOOKEEPER             --entity-type=topics             --entity-name $TESTTOPIC             --alter             --add-config max.message.bytes=8192;
+   23  ./bin/kafka-configs.sh             --zookeeper $ZOOKEEPER             --entity-type=topics             --entity-name $TESTTOPIC             --alter             --add-config max.message.bytes=8192;
+   24  ./bin/kafka-configs.sh             --zookeeper zookeeper.kafka:2181             --entity-type=topics             --entity-name $TESTTOPIC             --alter             --add-config max.message.bytes=8192;
+   25  ./bin/kafka-topics.sh --bootstrap-server $BOOTSTRAP --create --topic test01 --replication-factor 1 --partitions  1
+   26  ./bin/kafka-configs.sh             --zookeeper zookeeper.kafka:2181             --entity-type=topics             --entity-name $TESTTOPIC             --alter             --add-config max.message.bytes=8192;
+   27  rm -r /graalvm-native-config-dir
+   28  mkdir /graalvm-native-config-dir   && echo '[]' > /graalvm-native-config-dir/jni-config.json   && echo '[]' > /graalvm-native-config-dir/reflect-config.json   && echo '[]' > /graalvm-native-config-dir/proxy-config.json   && echo '{}' > /graalvm-native-config-dir/resource-config.json
+   29  ./bin/kafka-configs.sh             --zookeeper zookeeper.kafka:2181             --entity-type=topics             --entity-name $TESTTOPIC             --alter             --add-config max.message.bytes=8192;
+   30  rm -r /graalvm-native-config-dir
+   31  ./bin/kafka-configs.sh             --zookeeper zookeeper.kafka:2181             --entity-type=topics             --entity-name $TESTTOPIC             --alter             --add-config max.message.bytes=8192;
+   32  rm -r /graalvm-native-config-dir
+   33  mkdir /graalvm-native-config-dir   && echo '[]' > /graalvm-native-config-dir/jni-config.json   && echo '[]' > /graalvm-native-config-dir/reflect-config.json   && echo '[]' > /graalvm-native-config-dir/proxy-config.json   && echo '{}' > /graalvm-native-config-dir/resource-config.json
+   34  ./bin/kafka-console-producer.sh 
+   35  echo "msg" | ./bin/kafka-console-producer.sh --broker-list $BOOTSTRAP --topic test01
+   36  echo "msg" | ./bin/kafka-console-producer.sh --broker-list $BOOTSTRAP --topic test01
+   37  echo "msg" | ./bin/kafka-console-producer.sh --broker-list $BOOTSTRAP --topic test01
+   38  ls
+   39  echo "msg" | ./bin/kafka-console-producer.sh --broker-list $BOOTSTRAP --topic test01 --compression-codec snappy
+   40  echo "msg" | ./bin/kafka-console-producer.sh --broker-list $BOOTSTRAP --topic test01 --compression-codec lz4
+   41  echo "msg" | ./bin/kafka-console-producer.sh --broker-list $BOOTSTRAP --topic test01 --compression-codec zstd
+   42  ./bin/kafka-console-consumer.sh 
+   43  ./bin/kafka-console-consumer.sh --from-beginning --bootstrap-server $BOOTSTRAP --topic $TESTTOPIC
+   44  ./bin/kafka-verifiable-consumer.sh 
+   45  ./bin/kafka-verifiable-consumer.sh  --group-id test-kafka-cli --topic test01 --broker-list $BOOTSTRAP
+   46  ./bin/kafka-verifiable-producer.sh 
+   47  echo "msg" | ./bin/kafka-verifiable-producer.sh --broker-list $BOOTSTRAP --acks -1 --topic $TESTTOPIC
+   48  echo "msg" | ./bin/kafka-verifiable-producer.sh --broker-list $BOOTSTRAP --acks -1 --topic $TESTTOPIC
+   49  ls
+   50  ls bin/
+   51  history
+   52  history > /graalvm-native-config-dir/
+   53  history > /graalvm-native-config-dir/history.txt

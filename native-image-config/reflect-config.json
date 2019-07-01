@@ -1,166 +1,10 @@
 [
 {
-  "name":"com.fasterxml.jackson.databind.ext.Java7SupportImpl",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"com.github.luben.zstd.ZstdInputStream"
-},
-{
-  "name":"com.github.luben.zstd.ZstdOutputStream"
-},
-{
-  "name":"java.io.Serializable",
-  "allDeclaredMethods":true
-},
-{
-  "name":"java.lang.Comparable",
-  "allDeclaredMethods":true
-},
-{
-  "name":"java.lang.Integer",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true,
-  "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
-},
-{
-  "name":"java.lang.Long",
-  "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
-},
-{
-  "name":"java.lang.Number",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true
-},
-{
-  "name":"java.lang.String",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.String"] }]
+  "name":"java.lang.String"
 },
 {
   "name":"java.lang.Thread",
   "methods":[{"name":"getContextClassLoader","parameterTypes":[] }]
-},
-{
-  "name":"kafka.tools.ConsoleProducer$LineMessageReader",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"kafka.tools.DefaultMessageFormatter",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"kafka.utils.Log4jController",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"net.jpountz.lz4.LZ4HCJNICompressor",
-  "fields":[{"name":"INSTANCE"}],
-  "methods":[{"name":"<init>","parameterTypes":["int"] }]
-},
-{
-  "name":"net.jpountz.lz4.LZ4JNICompressor",
-  "fields":[{"name":"INSTANCE"}]
-},
-{
-  "name":"net.jpountz.lz4.LZ4JNIFastDecompressor",
-  "fields":[{"name":"INSTANCE"}]
-},
-{
-  "name":"net.jpountz.lz4.LZ4JNISafeDecompressor",
-  "fields":[{"name":"INSTANCE"}]
-},
-{
-  "name":"net.jpountz.xxhash.StreamingXXHash32JNI$Factory",
-  "fields":[{"name":"INSTANCE"}]
-},
-{
-  "name":"net.jpountz.xxhash.StreamingXXHash64JNI$Factory",
-  "fields":[{"name":"INSTANCE"}]
-},
-{
-  "name":"net.jpountz.xxhash.XXHash32JNI",
-  "fields":[{"name":"INSTANCE"}]
-},
-{
-  "name":"net.jpountz.xxhash.XXHash64JNI",
-  "fields":[{"name":"INSTANCE"}]
-},
-{
-  "name":"org.apache.kafka.clients.consumer.RangeAssignor",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.apache.kafka.clients.producer.internals.DefaultPartitioner",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.apache.kafka.common.serialization.ByteArrayDeserializer"
-},
-{
-  "name":"org.apache.kafka.common.serialization.ByteArraySerializer",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.apache.kafka.common.serialization.StringDeserializer"
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$CommitData",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$ConsumerEvent",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$OffsetsCommitted",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$PartitionData",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$PartitionsAssigned",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$PartitionsRevoked",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$RecordSetSummary",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$RecordsConsumed",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$ShutdownComplete",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$StartupComplete",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
 },
 {
   "name":"org.apache.log4j.Appender"
@@ -176,7 +20,14 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "name":"org.apache.log4j.DailyRollingFileAppender",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
   "name":"org.apache.log4j.Layout"
+},
+{
+  "name":"org.apache.log4j.Level"
 },
 {
   "name":"org.apache.log4j.Logger"
@@ -186,12 +37,29 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "name":"org.apache.log4j.Priority"
+},
+{
+  "name":"org.apache.log4j.jmx.AppenderDynamicMBean",
+  "allPublicConstructors":true
+},
+{
+  "name":"org.apache.log4j.jmx.HierarchyDynamicMBean",
+  "allPublicConstructors":true
+},
+{
+  "name":"org.apache.log4j.jmx.LayoutDynamicMBean",
+  "allPublicConstructors":true
+},
+{
+  "name":"org.apache.log4j.jmx.LoggerDynamicMBean",
+  "allPublicConstructors":true
+},
+{
   "name":"org.apache.log4j.spi.OptionHandler"
 },
 {
-  "name":"org.xerial.snappy.SnappyInputStream"
-},
-{
-  "name":"org.xerial.snappy.SnappyOutputStream"
+  "name":"org.apache.zookeeper.server.NIOServerCnxnFactory",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
 }
 ]
