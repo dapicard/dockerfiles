@@ -21,8 +21,7 @@
   "name":"java.lang.Integer",
   "allDeclaredFields":true,
   "allDeclaredMethods":true,
-  "allDeclaredConstructors":true,
-  "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
+  "allDeclaredConstructors":true
 },
 {
   "name":"java.lang.Iterable",
@@ -32,8 +31,7 @@
   "name":"java.lang.Long",
   "allDeclaredFields":true,
   "allDeclaredMethods":true,
-  "allDeclaredConstructors":true,
-  "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
+  "allDeclaredConstructors":true
 },
 {
   "name":"java.lang.Number",
@@ -47,6 +45,10 @@
 {
   "name":"java.lang.Thread",
   "methods":[{"name":"getContextClassLoader","parameterTypes":[] }]
+},
+{
+  "name":"java.nio.DirectByteBuffer",
+  "methods":[{"name":"cleaner","parameterTypes":[] }]
 },
 {
   "name":"java.util.AbstractCollection",
@@ -74,14 +76,6 @@
 {
   "name":"java.util.Map",
   "allDeclaredMethods":true
-},
-{
-  "name":"kafka.tools.ConsoleProducer$LineMessageReader",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"kafka.tools.DefaultMessageFormatter",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
   "name":"kafka.utils.Log4jController",
@@ -119,82 +113,6 @@
 {
   "name":"net.jpountz.xxhash.XXHash64JNI",
   "fields":[{"name":"INSTANCE"}]
-},
-{
-  "name":"org.apache.kafka.clients.consumer.RangeAssignor",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.apache.kafka.clients.producer.internals.DefaultPartitioner",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.apache.kafka.common.serialization.ByteArrayDeserializer"
-},
-{
-  "name":"org.apache.kafka.common.serialization.ByteArraySerializer",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.apache.kafka.common.serialization.StringDeserializer"
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$CommitData",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$ConsumerEvent",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$OffsetsCommitted",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$PartitionData",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$PartitionsAssigned",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$PartitionsRevoked",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$RecordSetSummary",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$RecordsConsumed",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$ShutdownComplete",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.apache.kafka.tools.VerifiableConsumer$StartupComplete",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
 },
 {
   "name":"org.apache.log4j.Appender"
@@ -290,6 +208,11 @@
 },
 {
   "name":"scala.collection.convert.Wrappers$MutableMapWrapper",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true
+},
+{
+  "name":"scala.collection.convert.Wrappers$SeqWrapper",
   "allDeclaredFields":true,
   "allDeclaredMethods":true
 },

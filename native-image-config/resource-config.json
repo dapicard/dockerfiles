@@ -1,13 +1,9 @@
 {
   "resources":[
-    {"pattern":"joptsimple/ExceptionMessages.properties"}, 
-    {"pattern":"joptsimple/HelpFormatterMessages.properties"}, 
     {"pattern":"kafka/kafka-version.properties"}, 
     {"pattern":"net/jpountz/util/linux/amd64/liblz4-java.so"}, 
-    {"pattern":"net/sourceforge/argparse4j/internal/ArgumentParserImpl.properties"}, 
     {"pattern":"org/slf4j/impl/StaticLoggerBinder.class"}, 
     {"pattern":"org/xerial/snappy/VERSION"}, 
-    {"pattern":"org/xerial/snappy/native/Linux/x86_64/libsnappyjava.so"}, 
-    {"pattern":"sun/text/resources/LineBreakIteratorData"}
+    {"pattern":"org/xerial/snappy/native/Linux/x86_64/libsnappyjava.so"}
   ]
 }

@@ -51,3 +51,12 @@
    51  history
    52  history > /graalvm-native-config-dir/
    53  history > /graalvm-native-config-dir/history.txt
+   54  rm -r /graalvm-native-config-dir
+   55  mkdir /graalvm-native-config-dir   && echo '[]' > /graalvm-native-config-dir/jni-config.json   && echo '[]' > /graalvm-native-config-dir/reflect-config.json   && echo '[]' > /graalvm-native-config-dir/proxy-config.json   && echo '{}' > /graalvm-native-config-dir/resource-config.json
+   56  ls
+   57  ./bin/zookeeper-server-start.sh config/zookeeper.properties 
+   58  ./bin/zookeeper-server-start.sh config/zookeeper.properties > /dev/null 2>/dev/null &
+   59  cat config/server.properties 
+   60  ./bin/kafka-server-start.sh config/server.properties 
+   61  ./bin/kafka-server-start.sh config/server.properties 
+   62  history > /graalvm-native-config-dir/history.txt

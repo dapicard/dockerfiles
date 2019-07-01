@@ -7,13 +7,6 @@
   ]
 },
 {
-  "name":"com.github.luben.zstd.ZstdOutputStream",
-  "fields":[
-    {"name":"dstPos"}, 
-    {"name":"srcPos"}
-  ]
-},
-{
   "name":"java.lang.OutOfMemoryError"
 }
 ]
