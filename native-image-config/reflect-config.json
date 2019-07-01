@@ -1,7 +1,27 @@
 [
 {
+  "name":"com.fasterxml.jackson.databind.ext.Java7SupportImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"java.io.Serializable",
+  "allDeclaredMethods":true
+},
+{
+  "name":"java.lang.Comparable",
+  "allDeclaredMethods":true
+},
+{
   "name":"java.lang.Integer",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true,
   "methods":[{"name":"valueOf","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"java.lang.Number",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true
 },
 {
   "name":"java.lang.String",
@@ -10,6 +30,15 @@
 {
   "name":"java.lang.Thread",
   "methods":[{"name":"getContextClassLoader","parameterTypes":[] }]
+},
+{
+  "name":"java.util.AbstractMap",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true
+},
+{
+  "name":"java.util.Map",
+  "allDeclaredMethods":true
 },
 {
   "name":"kafka.utils.Log4jController",
@@ -40,5 +69,18 @@
 },
 {
   "name":"org.apache.log4j.spi.OptionHandler"
+},
+{
+  "name":"org.apache.zookeeper.ClientCnxnSocketNIO",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"scala.Serializable",
+  "allDeclaredMethods":true
+},
+{
+  "name":"scala.collection.convert.Wrappers$MapWrapper",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true
 }
 ]
