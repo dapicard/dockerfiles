@@ -16,6 +16,6 @@ RUN mkdir /graalvm-native-config-dir \
   && echo '[]' > /graalvm-native-config-dir/jni-config.json \
   && echo '[]' > /graalvm-native-config-dir/reflect-config.json \
   && echo '[]' > /graalvm-native-config-dir/proxy-config.json \
-  && echo '[]' > /graalvm-native-config-dir/resource-config.json
+  && echo '{}' > /graalvm-native-config-dir/resource-config.json
 
 ENTRYPOINT ["docker-help"]
