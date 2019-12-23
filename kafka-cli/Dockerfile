@@ -29,7 +29,7 @@ RUN gu install native-image
 
 RUN yum -y install snappy libzstd lz4 && yum clean all
 
-ARG classpath=:./libs/jackson-core-2.10.0.jar:./libs/jackson-databind-2.10.0.jar:./libs/jackson-annotations-2.10.0.jar:./libs/jopt-simple-5.0.4.jar:./libs/kafka_2.12-2.4.0.jar:./libs/kafka-clients-2.4.0.jar:./libs/log4j-1.2.17.jar:./libs/lz4-java-1.6.0.jar:./libs/metrics-core-2.2.0.jar:./libs/scala-library-2.12.10.jar:./libs/scala-logging_2.12-3.9.2.jar:./libs/slf4j-api-1.7.28.jar:./libs/slf4j-nop-1.7.28.jar:./libs/zkclient-0.11.jar:./libs/zookeeper-3.5.6.jar
+ARG classpath=:./libs/jackson-core-2.10.0.jar:./libs/jackson-databind-2.10.0.jar:./libs/jackson-annotations-2.10.0.jar:./libs/jopt-simple-5.0.4.jar:./libs/kafka_2.12-2.4.0.jar:./libs/kafka-clients-2.4.0.jar:./libs/log4j-1.2.17.jar:./libs/lz4-java-1.6.0.jar:./libs/metrics-core-2.2.0.jar:./libs/scala-library-2.12.10.jar:./libs/scala-logging_2.12-3.9.2.jar:./libs/slf4j-api-1.7.28.jar:./libs/slf4j-nop-1.7.28.jar:./libs/zkclient-0.11.jar:./libs/zookeeper-3.5.6.jar:./libs/zookeeper-jute-3.5.6.jar
 
 WORKDIR /opt/kafka
 
