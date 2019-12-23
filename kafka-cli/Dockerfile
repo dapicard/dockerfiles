@@ -2,6 +2,7 @@
 # which we typically run as kubernetes jobs, over and over again
 
 FROM curlimages/curl@sha256:533cc13b5e395fd9203d68496603ed94fd01af959605523c770446986f38c874 as maven-jars
+USER root
 
 RUN curl -o /slf4j-simple-1.7.28.jar http://central.maven.org/maven2/org/slf4j/slf4j-simple/1.7.28/slf4j-simple-1.7.28.jar
 RUN curl -o /slf4j-nop-1.7.28.jar http://central.maven.org/maven2/org/slf4j/slf4j-nop/1.7.28/slf4j-nop-1.7.28.jar
