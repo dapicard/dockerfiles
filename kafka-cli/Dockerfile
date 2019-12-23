@@ -44,6 +44,7 @@ COPY --from=jopt-simple-jar /jopt-simple-5.0.4.jar ./libs/jopt-simple-5.0.4.jar
 RUN native-image \
   --no-server \
   #--static \
+  --allow-incomplete-classpath \
   --report-unsupported-elements-at-runtime \
   -H:+ReportExceptionStackTraces \
   --no-fallback \
@@ -57,6 +58,7 @@ RUN native-image \
 RUN native-image \
   --no-server \
   #--static \
+  --allow-incomplete-classpath \
   --report-unsupported-elements-at-runtime \
   -H:+ReportExceptionStackTraces \
   --no-fallback \
@@ -70,6 +72,7 @@ RUN native-image \
 RUN native-image \
   --no-server \
   #--static \
+  --allow-incomplete-classpath \
   --report-unsupported-elements-at-runtime \
   -H:+ReportExceptionStackTraces \
   --no-fallback \
