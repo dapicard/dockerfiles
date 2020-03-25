@@ -4,15 +4,15 @@
 FROM curlimages/curl@sha256:533cc13b5e395fd9203d68496603ed94fd01af959605523c770446986f38c874 as maven-jars
 USER root
 
-RUN curl -o /slf4j-simple-1.7.28.jar http://central.maven.org/maven2/org/slf4j/slf4j-simple/1.7.28/slf4j-simple-1.7.28.jar
-RUN curl -o /slf4j-nop-1.7.28.jar http://central.maven.org/maven2/org/slf4j/slf4j-nop/1.7.28/slf4j-nop-1.7.28.jar
+RUN curl -L -o /slf4j-simple-1.7.28.jar https://repo1.maven.org/maven2/org/slf4j/slf4j-simple/1.7.28/slf4j-simple-1.7.28.jar
+RUN curl -L -o /slf4j-nop-1.7.28.jar https://repo1.maven.org/maven2/org/slf4j/slf4j-nop/1.7.28/slf4j-nop-1.7.28.jar
 # Does native-image support tweaks for kafka-client
-RUN curl -o /quarkus-kafka-client-1.1.0.Final.jar http://central.maven.org/maven2/io/quarkus/quarkus-kafka-client/1.1.0.Final/quarkus-kafka-client-1.1.0.Final.jar
+RUN curl -L -o /quarkus-kafka-client-1.3.0.Final.jar https://repo1.maven.org/maven2/io/quarkus/quarkus-kafka-client/1.3.0.Final/quarkus-kafka-client-1.3.0.Final.jar
 
 # Built with a patch that eliminates some reflection: https://github.com/jopt-simple/jopt-simple/compare/jopt-simple-5.0.4...solsson:reflection-avoidance
 FROM solsson/jar-jopt-simple:5.0.4-reflectless@sha256:39a9249826192b3e9a290028da151e81fdccb3e4308fda3b7403fb6a6d9b9f78 as jopt-simple-jar
 
-FROM solsson/kafka@sha256:bc6aa2962c772733a07ed9ccbc48c8b218f8c42889c83e251665d193015a2a2f as dist
+FROM solsson/kafka:2.4.1@sha256:533983c99eb7f44e4a4c75bd2f6c2d79d005420e1344f7c579d53ae79381e602 as dist
 
 # The rest can be generated from:
 #docker run --rm --entrypoint sleep --name kafkaimage -d [the FROM above] infinity
@@ -21,15 +21,9 @@ FROM solsson/kafka@sha256:bc6aa2962c772733a07ed9ccbc48c8b218f8c42889c83e251665d1
 
 COPY --from=maven-jars /slf4j-nop-1.7.28.jar /opt/kafka/libs/slf4j-nop-1.7.28.jar
 
-ENTRYPOINT [ "/opt/java/openjdk/bin/java", "-cp", "./libs/activation-1.1.1.jar:./libs/aopalliance-repackaged-2.5.0.jar:./libs/argparse4j-0.7.0.jar:./libs/audience-annotations-0.5.0.jar:./libs/commons-cli-1.4.jar:./libs/commons-lang3-3.8.1.jar:./libs/connect-api-2.4.0.jar:./libs/connect-basic-auth-extension-2.4.0.jar:./libs/connect-file-2.4.0.jar:./libs/connect-json-2.4.0.jar:./libs/connect-mirror-2.4.0.jar:./libs/connect-mirror-client-2.4.0.jar:./libs/connect-runtime-2.4.0.jar:./libs/connect-transforms-2.4.0.jar:./libs/guava-20.0.jar:./libs/hk2-api-2.5.0.jar:./libs/hk2-locator-2.5.0.jar:./libs/hk2-utils-2.5.0.jar:./libs/jackson-annotations-2.10.0.jar:./libs/jackson-core-2.10.0.jar:./libs/jackson-databind-2.10.0.jar:./libs/jackson-dataformat-csv-2.10.0.jar:./libs/jackson-datatype-jdk8-2.10.0.jar:./libs/jackson-jaxrs-base-2.10.0.jar:./libs/jackson-jaxrs-json-provider-2.10.0.jar:./libs/jackson-module-jaxb-annotations-2.10.0.jar:./libs/jackson-module-paranamer-2.10.0.jar:./libs/jackson-module-scala_2.12-2.10.0.jar:./libs/jakarta.activation-api-1.2.1.jar:./libs/jakarta.annotation-api-1.3.4.jar:./libs/jakarta.inject-2.5.0.jar:./libs/jakarta.ws.rs-api-2.1.5.jar:./libs/jakarta.xml.bind-api-2.3.2.jar:./libs/javassist-3.22.0-CR2.jar:./libs/javax.servlet-api-3.1.0.jar:./libs/javax.ws.rs-api-2.1.1.jar:./libs/jaxb-api-2.3.0.jar:./libs/jersey-client-2.28.jar:./libs/jersey-common-2.28.jar:./libs/jersey-container-servlet-2.28.jar:./libs/jersey-container-servlet-core-2.28.jar:./libs/jersey-hk2-2.28.jar:./libs/jersey-media-jaxb-2.28.jar:./libs/jersey-server-2.28.jar:./libs/jetty-client-9.4.20.v20190813.jar:./libs/jetty-continuation-9.4.20.v20190813.jar:./libs/jetty-http-9.4.20.v20190813.jar:./libs/jetty-io-9.4.20.v20190813.jar:./libs/jetty-security-9.4.20.v20190813.jar:./libs/jetty-server-9.4.20.v20190813.jar:./libs/jetty-servlet-9.4.20.v20190813.jar:./libs/jetty-servlets-9.4.20.v20190813.jar:./libs/jetty-util-9.4.20.v20190813.jar:./libs/jopt-simple-5.0.4.jar:./libs/kafka_2.12-2.4.0.jar:./libs/kafka_2.12-2.4.0-sources.jar:./libs/kafka-clients-2.4.0.jar:./libs/kafka-log4j-appender-2.4.0.jar:./libs/kafka-streams-2.4.0.jar:./libs/kafka-streams-examples-2.4.0.jar:./libs/kafka-streams-scala_2.12-2.4.0.jar:./libs/kafka-streams-test-utils-2.4.0.jar:./libs/kafka-tools-2.4.0.jar:./libs/log4j-1.2.17.jar:./libs/lz4-java-1.6.0.jar:./libs/maven-artifact-3.6.1.jar:./libs/metrics-core-2.2.0.jar:./libs/netty-buffer-4.1.42.Final.jar:./libs/netty-codec-4.1.42.Final.jar:./libs/netty-common-4.1.42.Final.jar:./libs/netty-handler-4.1.42.Final.jar:./libs/netty-resolver-4.1.42.Final.jar:./libs/netty-transport-4.1.42.Final.jar:./libs/netty-transport-native-epoll-4.1.42.Final.jar:./libs/netty-transport-native-unix-common-4.1.42.Final.jar:./libs/osgi-resource-locator-1.0.1.jar:./libs/paranamer-2.8.jar:./libs/plexus-utils-3.2.0.jar:./libs/reflections-0.9.11.jar:./libs/rocksdbjni-5.18.3.jar:./libs/scala-collection-compat_2.12-2.1.2.jar:./libs/scala-java8-compat_2.12-0.9.0.jar:./libs/scala-library-2.12.10.jar:./libs/scala-logging_2.12-3.9.2.jar:./libs/scala-reflect-2.12.10.jar:./libs/slf4j-api-1.7.28.jar:./libs/slf4j-log4j12-1.7.28.jar:./libs/snappy-java-1.1.7.3.jar:./libs/validation-api-2.0.1.Final.jar:./libs/zookeeper-3.5.6.jar:./libs/zookeeper-jute-3.5.6.jar:./libs/zstd-jni-1.4.3-1.jar" ]
-CMD ["kafka.admin.ConfigCommand"]
+FROM solsson/kafka:2.4.1-graalvm@sha256:2d1f65c34357813539acd1345cab267f8552b264ce62e040e4860d8106daac0d
 
-FROM oracle/graalvm-ce:19.3.0@sha256:8bd5d0894b432be34c3b534783e14358364298d66f4d9648e2bfef42006683ef as native-build
-RUN gu install native-image
-
-RUN yum -y install snappy libzstd lz4 && yum clean all
-
-ARG classpath=:./libs/jackson-core-2.10.0.jar:./libs/jackson-databind-2.10.0.jar:./libs/jackson-annotations-2.10.0.jar:./libs/jopt-simple-5.0.4.jar:./libs/kafka_2.12-2.4.0.jar:./libs/kafka-clients-2.4.0.jar:./libs/log4j-1.2.17.jar:./libs/lz4-java-1.6.0.jar:./libs/metrics-core-2.2.0.jar:./libs/scala-library-2.12.10.jar:./libs/scala-logging_2.12-3.9.2.jar:./libs/slf4j-api-1.7.28.jar:./libs/slf4j-nop-1.7.28.jar:./libs/zkclient-0.11.jar:./libs/zookeeper-3.5.6.jar:./libs/zookeeper-jute-3.5.6.jar
+ARG classpath=:./libs/jackson-core-2.10.0.jar:./libs/jackson-databind-2.10.0.jar:./libs/jackson-annotations-2.10.0.jar:./libs/jopt-simple-5.0.4.jar:./libs/kafka_2.12-2.4.1.jar:./libs/kafka-clients-2.4.1.jar:./libs/log4j-1.2.17.jar:./libs/lz4-java-1.6.0.jar:./libs/metrics-core-2.2.0.jar:./libs/scala-library-2.12.10.jar:./libs/scala-logging_2.12-3.9.2.jar:./libs/slf4j-api-1.7.28.jar:./libs/slf4j-nop-1.7.28.jar:./libs/zkclient-0.11.jar:./libs/zookeeper-3.5.7.jar:./libs/zookeeper-jute-3.5.7.jar:./libs/quarkus-kafka-client-1.3.0.Final.jar
 
 WORKDIR /opt/kafka
 
@@ -38,7 +32,7 @@ COPY --from=dist /opt/kafka .
 # Failed to verify that a reflection config file makes any difference though
 COPY reflection.json .
 
-COPY --from=maven-jars /quarkus-kafka-client-1.1.0.Final.jar ./libs/quarkus-kafka-client-1.1.0.Final.jar
+COPY --from=maven-jars /quarkus-kafka-client-1.3.0.Final.jar ./libs/quarkus-kafka-client-1.3.0.Final.jar
 COPY --from=jopt-simple-jar /jopt-simple-5.0.4.jar ./libs/jopt-simple-5.0.4.jar
 
 RUN native-image \
