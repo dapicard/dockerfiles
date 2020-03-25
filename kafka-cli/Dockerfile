@@ -97,6 +97,8 @@ WORKDIR /opt/kafka
 # Ubuntu has no nonroot with a home dir, only 65534
 USER nobody
 
+ENTRYPOINT ["sh", "-c", "echo 'Available commands:' && ls /usr/local/bin"]
+
 # User 65532
 #FROM gcr.io/distroless/base-debian10:nonroot@sha256:56da492c4800196c29f3e9fac3c0e66af146bfd31694f29f0958d6d568139dd9
 # Needs PATH
@@ -115,3 +117,5 @@ COPY --from=3 \
 COPY --from=ubuntu /usr/local/bin /usr/local/bin
 COPY --from=ubuntu /opt/kafka/bin /opt/kafka/bin
 WORKDIR /opt/kafka
+
+ENTRYPOINT ["sh", "-c", "echo 'Available commands:' && ls /usr/local/bin"]
