@@ -1,5 +1,5 @@
 FROM adoptopenjdk/openjdk11:jdk-11.0.6_10-slim
-ARG VERSION=2.0.95
+ARG VERSION=2.0.100
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends git ca-certificates
 RUN git clone -b ${VERSION} https://github.com/linkedin/cruise-control.git
@@ -10,7 +10,7 @@ RUN mv -v /cruise-control/cruise-control/build/libs/cruise-control-*.jar \
 RUN mv -v /cruise-control/cruise-control/build/dependant-libs/cruise-control-metrics-reporter-*.jar \
   /cruise-control/cruise-control/build/dependant-libs/cruise-control-metrics-reporter.jar
 
-FROM node:10.16
+FROM node:10.19
 RUN mkdir /src && cd /src && git clone https://github.com/linkedin/cruise-control-ui.git
 WORKDIR /src/cruise-control-ui
 RUN git fetch origin
